@@ -1,102 +1,163 @@
-import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Users } from "lucide-react";
+import { TypingAnimation } from "@/components/typing-animation";
+import { ReviewSlider } from "@/components/review-slider";
+import { ScrollNavigation } from "@/components/scroll-navigation";
+import { PricingSection } from "@/components/pricing-section";
+import { PortfolioSlideshow } from "@/components/portfolio-slideshow";
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-white text-[#1A1A1A]">
+      {/* Navigation */}
+      <ScrollNavigation />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section className="py-20 px-4 pt-32">
+        <div className="container mx-auto text-center max-w-4xl">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            CC Designs for
+            <br />
+            <TypingAnimation />
+          </h1>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button
+              size="lg"
+              className="bg-[#FF4D58] text-white hover:bg-[#FF4D58]/90"
+            >
+              See pricing
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A]/5"
+            >
+              <Users className="w-4 h-4 mr-2" />
+              Book a call
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="bg-gray-50 border border-gray-200 border-dashed rounded-2xl p-10 md:p-16">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+              <div className="max-w-2xl mb-6 md:mb-0">
+                <h2 className="text-3xl md:text-4xl font-bold mb-3">
+                  Invest in your product's design and{" "}
+                  <span className="text-[#FF4D58]">engage more users</span>
+                </h2>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button
+                  variant="outline"
+                  className="bg-[#72B6F9] text-white hover:bg-[#72B6F9]/90 border-0"
+                >
+                  See pricing
+                </Button>
+                <Button className="bg-[#1A1A1A] text-white hover:bg-[#1A1A1A]/90">
+                  Book a call
+                </Button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="border-r border-gray-300 pr-4 last:border-r-0 last:pr-0">
+                <div className="text-5xl font-bold mb-3">39%</div>
+                <p className="text-[#1A1A1A]/70">
+                  of users will leave a site due to poor design.
+                </p>
+              </div>
+
+              <div className="md:border-r md:border-gray-300 md:pr-4">
+                <div className="text-5xl font-bold mb-3">74%</div>
+                <p className="text-[#1A1A1A]/70">
+                  of users will leave a site if it is not responsive.
+                </p>
+              </div>
+
+              <div>
+                <div className="text-5xl font-bold mb-3">42%</div>
+                <p className="text-[#1A1A1A]/70">
+                  of users will leave a site with poor functionality.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Slider */}
+      <section className="py-16 px-4 overflow-hidden">
+        <div className="container mx-auto mb-10 text-center">
+          <h2 className="text-4xl font-bold mb-4">What Our Clients Say</h2>
+          <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto">
+            Trusted by hundreds of companies worldwide
+          </p>
+        </div>
+
+        <ReviewSlider />
+      </section>
+
+      {/* Portfolio Showcase */}
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Our Design Portfolio</h2>
+            <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto">
+              From mobile apps to web platforms, we create designs that drive
+              results
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <PortfolioSlideshow />
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <PricingSection />
+
+      {/* CTA Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center max-w-3xl">
+          <h2 className="text-4xl font-bold mb-6">
+            Ready to elevate your brand?
+          </h2>
+          <p className="text-xl text-[#1A1A1A]/70 mb-8">
+            Join 100+ companies that trust DesignX with their most important
+            design projects
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              className="bg-[#FF4D58] text-white hover:bg-[#FF4D58]/90"
+            >
+              Start Your Project
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#1A1A1A]/5"
+            >
+              View Our Work
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 py-12 px-4">
+        <div className="container mx-auto">
+          <div className="mt-12 pt-8 text-center text-[#1A1A1A]/70">
+            <p>&copy; 2025 CC Designs. All rights reserved.</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
