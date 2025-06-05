@@ -16,7 +16,7 @@ export default function LandingPage() {
       <section className="py-20 px-4 pt-32">
         <div className="container mx-auto text-center max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            CC Designs for
+            CC Designs is for
             <br />
             <TypingAnimation />
           </h1>

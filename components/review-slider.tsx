@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { Star } from "lucide-react"
+import { useEffect, useRef } from "react";
+import { Star } from "lucide-react";
 
 const reviews = [
   {
@@ -68,78 +68,75 @@ const reviews = [
     rating: 5,
     text: "DesignX helped us reimagine our content delivery. Time-on-site increased by 35% and reduced bounce rates.",
   },
-]
+];
 
 export function ReviewSlider() {
-  const sliderRef = useRef<HTMLDivElement>(null)
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  // Triple the reviews for seamless looping
+  const duplicatedReviews = [...reviews, ...reviews, ...reviews];
 
   useEffect(() => {
-    const slider = sliderRef.current
-    if (!slider) return
+    const slider = sliderRef.current;
+    if (!slider) return;
 
-    // Clone the slider content for seamless looping
-    const content = slider.querySelector(".slider-content")
-    if (!content) return
-
-    const clone = content.cloneNode(true)
-    slider.appendChild(clone)
-
-    // Calculate animation duration based on content width
-    const contentWidth = content.scrollWidth
-    const duration = contentWidth / 50 // Adjust speed by changing divisor
-
-    // Apply animation to both original and cloned content
-    const elements = slider.querySelectorAll(".slider-content")
-    elements.forEach((el) => {
-      if (el instanceof HTMLElement) {
-        el.style.animationDuration = `${duration}s`
+    // Add CSS keyframes for sliding animation
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes slideLeft {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-33.33%);
+        }
       }
-    })
+      .slide-animation {
+        animation: slideLeft 15s linear infinite;
+      }
+    `;
+    document.head.appendChild(style);
 
     return () => {
-      if (clone.parentNode) {
-        slider.removeChild(clone)
-      }
-    }
-  }, [])
+      document.head.removeChild(style);
+    };
+  }, []);
 
   return (
-    <div className="w-full overflow-hidden" ref={sliderRef}>
-      <div
-        className="slider-content flex animate-slide"
-        style={{
-          animationTimingFunction: "linear",
-          animationIterationCount: "infinite",
-          animationPlayState: "running",
-          animationName: "slide",
-          willChange: "transform",
-        }}
-      >
-        {reviews.map((review) => (
-          <div
-            key={review.id}
-            className="flex-shrink-0 w-[320px] mx-3 bg-white border border-gray-200 shadow-sm p-5 rounded-xl"
-          >
-            <div className="flex mb-3">
-              {[...Array(review.rating)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-[#FFE066] fill-current" />
-              ))}
-            </div>
-            <blockquote className="text-sm text-[#1A1A1A] mb-4 leading-relaxed">"{review.text}"</blockquote>
-            <div className="flex items-center">
-              <div className="w-8 h-8 rounded-full bg-[#72B6F9] flex items-center justify-center text-sm font-bold mr-3 text-white">
-                {review.name.charAt(0)}
+    <div className="w-full overflow-hidden py-8">
+      <div className="w-full overflow-hidden" ref={sliderRef}>
+        <div className="flex slide-animation">
+          {duplicatedReviews.map((review, index) => (
+            <div
+              key={`${review.id}-${index}`}
+              className="flex-shrink-0 w-[320px] mx-3 bg-white border border-gray-200 shadow-sm p-5 rounded-xl"
+            >
+              <div className="flex mb-3">
+                {[...Array(review.rating)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-4 h-4 text-[#FFE066] fill-current"
+                  />
+                ))}
               </div>
-              <div>
-                <div className="font-medium text-sm">{review.name}</div>
-                <div className="text-xs text-[#1A1A1A]/70">
-                  {review.role}, {review.company}
+              <blockquote className="text-sm text-[#1A1A1A] mb-4 leading-relaxed">
+                "{review.text}"
+              </blockquote>
+              <div className="flex items-center">
+                <div className="w-8 h-8 rounded-full bg-[#72B6F9] flex items-center justify-center text-sm font-bold mr-3 text-white">
+                  {review.name.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-medium text-sm">{review.name}</div>
+                  <div className="text-xs text-[#1A1A1A]/70">
+                    {review.role}, {review.company}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
-  )
+  );
 }

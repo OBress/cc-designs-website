@@ -3,11 +3,15 @@
 import { useState, useEffect } from "react";
 
 const targets = [
-  "modern brands",
-  "tech startups",
-  "growing companies",
-  "innovative teams",
-  "ambitious founders",
+  "restaurants",
+  "jewelry stores",
+  "cafes",
+  "gyms",
+  "food trucks",
+  "clothing stores",
+  "salons",
+  "art galleries",
+  "everyone",
 ];
 
 export function TypingAnimation() {
